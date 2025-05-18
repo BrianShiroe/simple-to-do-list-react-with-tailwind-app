@@ -22,10 +22,11 @@ export default function TaskList({ tasks, onToggle, onDelete, reorderTasks, task
     setDraggedIndex(null);
   };
 
-  const hoverEffect = "hover:shadow-lg hover:scale-[1.01] hover:brightness-105 cursor-pointer transition-transform duration-300";
+  const hoverEffect =
+    "hover:shadow-lg hover:scale-[1.01] hover:brightness-105 cursor-pointer transition-transform duration-300";
 
   if (tasks.length === 0) {
-    return <p className={`text-center ${textColor} opacity-70`}>No tasks yet!</p>;
+    return <p className={`mt-4 text-center ${textColor} opacity-70`}>No tasks yet!</p>;
   }
 
   return (
