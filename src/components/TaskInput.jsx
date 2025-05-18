@@ -80,6 +80,7 @@ export default function TaskInput({
             width: pickerWidth,
             maxHeight: pickerMaxHeight,
             overflowY: "auto",
+            overflow: "hidden",
           }}
         >
           <EmojiPicker onEmojiClick={onEmojiClick} theme={emojiTheme} emojiStyle={"google"} />
