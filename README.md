@@ -8,6 +8,9 @@ This project demonstrates a simple, clean interface for managing tasks efficient
 Check out the live demo here:  
 [Simple To-Do List Demo Website](https://simple-to-do-list-react-with-tailwin.netlify.app/)
 
+![Demo Image](src/assets/demo-img-1.png)
+![Demo Image](src/assets/demo-img-2.png)
+
 ## Features
 
 - Add new tasks
