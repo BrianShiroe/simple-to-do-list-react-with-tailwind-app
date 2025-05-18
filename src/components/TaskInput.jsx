@@ -14,7 +14,7 @@ export default function TaskInput({
   inputBorder,
   buttonBg,
   pickerWidth = "",
-  pickerMaxHeight = "400px",
+  pickerMaxHeight = "395px",
   emojiTheme = "light",
 }) {
   const [task, setTask] = useState("");
@@ -55,7 +55,9 @@ export default function TaskInput({
     <div className="relative w-full">
       <input
         type="text"
-        className={`w-full border rounded px-4 py-2 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500 ${inputBorder}`}
+        className={`w-full border rounded px-4 py-2 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          emojiTheme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
+        } ${inputBorder}`}
         placeholder="Add a new task"
         value={task}
         onChange={(e) => setTask(e.target.value)}
@@ -80,7 +82,7 @@ export default function TaskInput({
             overflowY: "auto",
           }}
         >
-          <EmojiPicker onEmojiClick={onEmojiClick} theme={emojiTheme} emojiStyle={"google"}/>
+          <EmojiPicker onEmojiClick={onEmojiClick} theme={emojiTheme} emojiStyle={"google"} />
         </div>
       )}
     </div>
