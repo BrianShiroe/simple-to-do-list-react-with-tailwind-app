@@ -1,3 +1,5 @@
 # npm install these:
 uuid
 prop-types
+lucide-react
+emoji-picker-react

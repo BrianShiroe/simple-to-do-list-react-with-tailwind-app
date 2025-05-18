@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "emoji-picker-react": "^4.12.2",
+    "lucide-react": "^0.511.0",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

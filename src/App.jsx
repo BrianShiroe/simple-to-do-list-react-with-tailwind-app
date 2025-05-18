@@ -11,14 +11,14 @@ import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import ThemeToggleButton from "./components/ThemeToggleButton";
 import Header from "./components/Header";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const themes = {
   light: {
     bg: "bg-gray-100",
     text: "text-gray-900",
     inputBorder: "border-gray-300",
-    buttonBg: "bg-blue-500 hover:bg-blue-600 text-white",
+    buttonBg: "bg-blue-500 hover:bg-blue-600",
     taskBg: "bg-white",
     taskCompletedBg: "bg-green-100",
   },
@@ -26,7 +26,7 @@ const themes = {
     bg: "bg-gray-900",
     text: "text-gray-100",
     inputBorder: "border-gray-700",
-    buttonBg: "bg-blue-700 hover:bg-blue-800 text-white",
+    buttonBg: "bg-blue-700 hover:bg-blue-800",
     taskBg: "bg-gray-800",
     taskCompletedBg: "bg-green-700",
   },
@@ -61,15 +61,11 @@ export default function App() {
   };
 
   const toggleTask = (id) => {
-    setTasks(tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)));
+    setTasks((prevTasks) => prevTasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)));
   };
 
   const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
   const reorderTasks = (startIndex, endIndex) => {
@@ -79,16 +75,26 @@ export default function App() {
     setTasks(updatedTasks);
   };
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
   const currentTheme = themes[theme];
 
   return (
-    <div className={`${currentTheme.bg} min-h-screen p-6 transition-colors duration-500 relative`}>
+    <div className={`${currentTheme.bg} min-h-screen p-6 transition-colors duration-500`}>
       <ThemeToggleButton theme={theme} toggleTheme={toggleTheme} buttonBg={currentTheme.buttonBg} />
 
       <div className="max-w-md mx-auto">
         <Header textColor={currentTheme.text} />
 
-        <TaskInput onAdd={addTask} inputBorder={currentTheme.inputBorder} buttonBg={currentTheme.buttonBg} />
+        <TaskInput
+          onAdd={addTask}
+          inputBorder={currentTheme.inputBorder}
+          buttonBg={currentTheme.buttonBg}
+          emojiTheme={theme}
+        />
+
         <TaskList
           tasks={tasks}
           onToggle={toggleTask}
