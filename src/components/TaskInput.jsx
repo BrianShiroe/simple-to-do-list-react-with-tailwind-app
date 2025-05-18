@@ -1,4 +1,9 @@
-// TaskInput.jsx
+/**
+ * File: TaskInput.jsx
+ * Description: Component for entering new tasks.
+ *              Handles input state and triggers task addition on button click or Enter key press.
+ *              Applies theming styles for input border and button background.
+ */
 
 import React, { useState } from "react";
 

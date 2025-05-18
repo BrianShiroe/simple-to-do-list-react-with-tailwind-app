@@ -1,3 +1,11 @@
+/**
+ * File: app.jsx
+ * Description: Root component of the application that manages global state including tasks and theme.
+ *              Handles task creation, toggling, deletion, and reordering.
+ *              Also manages theme switching between light and dark modes with persistence via localStorage.
+ *              Renders the main UI structure with Header, TaskInput, TaskList, and ThemeToggleButton components.
+ */
+
 import React, { useState, useEffect } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";

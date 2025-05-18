@@ -1,4 +1,8 @@
-// Header.jsx
+/**
+ * File: Header.jsx
+ * Description: Simple header component displaying the app title.
+ *              Applies dynamic text color based on the current theme.
+ */
 
 import React from "react";
 

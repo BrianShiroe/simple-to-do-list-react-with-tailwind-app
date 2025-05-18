@@ -1,6 +1,12 @@
 // TaskItem.jsx
 
-import React from "react";
+import React, { useState } from "react";
+/**
+ * File: TaskItem.jsx
+ * Description: Component representing a single task item.
+ *              Handles task toggle, deletion, and supports drag-and-drop interaction.
+ *              Adapts styling based on theme and task completion state.
+ */
 
 export default function TaskItem({
   task,
@@ -14,26 +20,44 @@ export default function TaskItem({
   onDragOver,
   onDrop,
 }) {
+  const [isGrabbing, setIsGrabbing] = useState(false);
+
   return (
     <li
-      className={`flex items-center justify-between p-2 mb-2 rounded ${task.completed ? taskCompletedBg : taskBg}`}
+      className={`group flex items-center justify-between p-2 mb-2 rounded transition duration-300
+        ${task.completed ? taskCompletedBg : taskBg} ${textColor}
+        hover:shadow-lg hover:scale-[1.01] hover:brightness-105
+        ${isGrabbing ? "cursor-grabbing" : "cursor-grab"}`}
       draggable={draggable}
-      onDragStart={onDragStart}
+      onDragStart={(e) => {
+        setIsGrabbing(true);
+        onDragStart?.(e);
+      }}
+      onDragEnd={() => setIsGrabbing(false)}
       onDragOver={onDragOver}
-      onDrop={onDrop}
+      onDrop={(e) => {
+        setIsGrabbing(false);
+        onDrop?.(e);
+      }}
+      onClick={() => onToggle(task.id)}
     >
-      <label className={`flex items-center cursor-pointer select-none ${textColor}`}>
+      <div className="flex items-center w-full">
         <input
           type="checkbox"
           checked={task.completed}
-          onChange={() => onToggle(task.id)}
-          className="mr-3 form-checkbox h-5 w-5 text-blue-600"
+          readOnly
+          className="mr-3 form-checkbox h-5 w-5 text-blue-600 pointer-events-none"
         />
-        <span className={task.completed ? "line-through opacity-70" : ""}>{task.text}</span>
-      </label>
+        <span className={`${task.completed ? "line-through opacity-70" : ""}`}>
+          {task.text}
+        </span>
+      </div>
       <button
-        onClick={() => onDelete(task.id)}
-        className="text-red-500 hover:text-red-700 font-bold"
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete(task.id);
+        }}
+        className="text-red-500 hover:text-red-700 font-bold ml-4"
         aria-label="Delete task"
       >
         &times;
