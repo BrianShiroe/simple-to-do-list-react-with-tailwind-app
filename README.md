@@ -57,6 +57,6 @@ Check out the live demo here:
    npm run dev
    ```
 
-5. Open your browser and paste the given url from the terminal like: http://localhost:3000
+5. Open your browser and paste the given url from the terminal like: http://localhost:5173
 
 
